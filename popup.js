@@ -1,3 +1,28 @@
+var update_favs = function() {
+    browser.storage.sync.get(null).then(function(items) {
+        var favlist = document.getElementById("favlist");
+        while (favlist.firstChild) {
+            favlist.removeChild(favlist.firstChild);
+        }
+        
+        for (var sid in items) {
+            if (items.hasOwnProperty(sid) && items[sid]["favoured"] === true) {
+                var row = document.createElement("tr");
+                var item = document.createElement("td");
+                row.appendChild(item)
+                item.classList.add("storyitem");
+                
+                item.innerHTML = "<em><strong>" + items[sid]["title"] +
+                                "</strong></em> by <em>" + items[sid]["author"] +
+                                "</em><br>" + items[sid]["summary"] + "<br>" +
+                                "<strong>User Comments:</strong> " + items[sid]["comments"];
+                
+                favlist.appendChild(row);
+            }
+        }
+    });
+};
+
 document.addEventListener("DOMContentLoaded", function() {
     var buttons = document.getElementsByClassName("button");
     
@@ -30,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["favoured"] = document.getElementById("favtick").checked;
         store[sid]["comments"] = document.getElementById("comments").value;
         
-        browser.storage.sync.set(store);
+        browser.storage.sync.set(store).then(update_favs);
     });
     
     browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
@@ -53,21 +78,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
-    browser.storage.sync.get(null).then(function(items) {
-        for (var sid in items) {
-            if (items.hasOwnProperty(sid) && items[sid]["favoured"] === true) {
-                var row = document.createElement("tr");
-                var item = document.createElement("td");
-                row.appendChild(item)
-                item.classList.add("storyitem");
-                
-                item.innerHTML = "<em><strong>" + items[sid]["title"] +
-                                "</strong></em> by <em>" + items[sid]["author"] +
-                                "</em><br>" + items[sid]["summary"] + "<br>" +
-                                "<strong>User Comments:</strong> " + items[sid]["comments"];
-                
-                document.getElementById("favlist").appendChild(row);
-            }
-        }
-    });
+    update_favs();
 });
