@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    
+    "name": "Fanfiction Assistant",
+    "description": "A simple assistant for reading fanfiction.",
+    "version": "1.1",
+    
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "*://www.fanfiction.net/s/*"
+    ],
+    "content_scripts": [{
+        "matches": [
+            "*://www.fanfiction.net/s/*"
+        ],
+        "js": [
+            "inject.js"
+        ],
+        "run_at": "document_end"
+    }]
+}

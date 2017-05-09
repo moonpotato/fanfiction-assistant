@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Fanfiction Assistant</title>
+        <link rel="stylesheet" type="text/css" href="popup.css">
+        <script type="text/javascript" src="popup.js"></script>
+    </head>
+    <body>
+        <div id="top-row" class="noselect">
+            <div class="button active">Current Story</div>
+            <div class="button">STUFF</div>
+            <div class="button">STUFF</div>
+            <div class="button">STUFF</div>
+        </div>
+        <div id="content">
+            <div id="current" class="container">
+                <span id="sid" hidden></span>
+                <div class="box">
+                    <strong>Title: </strong><span id="title"></span><br>
+                    <strong>Author: </strong><span id="author"></span><br>
+                    <strong>Summary: </strong><span id="summary"></span><br>
+                    <strong>Favourite: </strong><input type="checkbox" id="favtick">
+                </div>
+                <textarea id="comments" class="box"></textarea>
+                <button id="save">Save</button>
+            </div>
+            <div id="favourites" class="container" hidden>
+                Things!
+            </div>
+            <div id="stuff0" class="container" hidden>
+                Stuff!
+            </div>
+            <div id="stuff1" class="container" hidden>
+                Excitement!
+            </div>
+        </div>
+        
+    </body>
+</html>
