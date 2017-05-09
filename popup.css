@@ -30,6 +30,11 @@ body {
     min-width: 32em;
 }
 
+.container {
+    max-height: 30em;
+    max-width: 48em;
+}
+
 #content {
     padding: 1em 1em;
     border: 1px solid black;

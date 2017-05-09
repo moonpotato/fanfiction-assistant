@@ -20,10 +20,16 @@ document.addEventListener("DOMContentLoaded", function() {
     
     document.getElementById("save").addEventListener("click", function() {
         var store = {};
+        
         var sid = document.getElementById("sid").innerHTML;
-        var checked = document.getElementById("favtick").checked;
-        var uinput = document.getElementById("comments").value;
-        store[sid] = [checked, uinput];
+        store[sid] = {};
+        
+        store[sid]["title"] = document.getElementById("title").innerHTML;
+        store[sid]["author"] = document.getElementById("author").innerHTML;
+        store[sid]["summary"] = document.getElementById("summary").innerHTML;
+        store[sid]["favoured"] = document.getElementById("favtick").checked;
+        store[sid]["comments"] = document.getElementById("comments").value;
+        
         browser.storage.sync.set(store);
     });
     
@@ -37,13 +43,28 @@ document.addEventListener("DOMContentLoaded", function() {
             var sid = document.getElementById("sid").innerHTML;
             browser.storage.sync.get([sid]).then(function(items) {
                 if (items[sid] !== undefined) {
-                    document.getElementById("favtick").checked = items[sid][0];
-                    document.getElementById("comments").value = items[sid][1];
+                    document.getElementById("favtick").checked = items[sid]["favoured"];
+                    document.getElementById("comments").value = items[sid]["comments"];
                 } else {
                     document.getElementById("favtick").checked = false;
                     document.getElementById("comments").value = "";
                 }
             });
         });
+    });
+    
+    browser.storage.sync.get(null).then(function(items) {
+        for (var sid in items) {
+            if (items.hasOwnProperty(sid) && items[sid]["favoured"] === true) {
+                var row = document.createElement("tr");
+                
+                row.innerHTML = "<em><strong>" + items[sid]["title"] +
+                                "</strong></em> by <em>" + items[sid]["author"] +
+                                "</em><br>" + items[sid]["summary"] + "<br>" +
+                                "<strong>User Comments:</strong> " + items[sid]["comments"];
+                
+                document.getElementById("favlist").appendChild(row);
+            }
+        }
     });
 });
