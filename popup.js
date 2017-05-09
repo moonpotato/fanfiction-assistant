@@ -57,8 +57,11 @@ document.addEventListener("DOMContentLoaded", function() {
         for (var sid in items) {
             if (items.hasOwnProperty(sid) && items[sid]["favoured"] === true) {
                 var row = document.createElement("tr");
+                var item = document.createElement("td");
+                row.appendChild(item)
+                item.classList.add("storyitem");
                 
-                row.innerHTML = "<em><strong>" + items[sid]["title"] +
+                item.innerHTML = "<em><strong>" + items[sid]["title"] +
                                 "</strong></em> by <em>" + items[sid]["author"] +
                                 "</em><br>" + items[sid]["summary"] + "<br>" +
                                 "<strong>User Comments:</strong> " + items[sid]["comments"];

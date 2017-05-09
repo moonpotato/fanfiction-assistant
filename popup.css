@@ -67,3 +67,17 @@ textarea.box {
 input#favtick {
     float: right;
 }
+
+.storyitem {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.storyitem:hover {
+    background-color: lightblue;
+}
+
+.storyitem:active:hover {
+    background-color: blue;
+}
