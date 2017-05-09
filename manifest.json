@@ -1,9 +1,14 @@
 {
     "manifest_version": 2,
+    "applications": {
+        "gecko": {
+            "id": "RmFuZmljdGlvbiBBc3Npc3RhbnQ="
+        }
+    },
     
     "name": "Fanfiction Assistant",
     "description": "A simple assistant for reading fanfiction.",
-    "version": "1.1",
+    "version": "2.0",
     
     "browser_action": {
         "default_icon": "icon.png",

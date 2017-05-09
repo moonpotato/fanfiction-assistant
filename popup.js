@@ -24,18 +24,18 @@ document.addEventListener("DOMContentLoaded", function() {
         var checked = document.getElementById("favtick").checked;
         var uinput = document.getElementById("comments").value;
         store[sid] = [checked, uinput];
-        chrome.storage.sync.set(store);
+        browser.storage.sync.set(store);
     });
     
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {"type": "ff-data"}, function(response) {
+    browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
+        browser.tabs.sendMessage(tabs[0].id, {"type": "ff-data"}).then(function(response) {
             document.getElementById("title").innerHTML = response["title"];
             document.getElementById("author").innerHTML = response["author"];
             document.getElementById("summary").innerHTML = response["summary"];
             document.getElementById("sid").innerHTML = response["id"];
             
             var sid = document.getElementById("sid").innerHTML;
-            chrome.storage.sync.get([sid], function(items) {
+            browser.storage.sync.get([sid]).then(function(items) {
                 if (items[sid] !== undefined) {
                     document.getElementById("favtick").checked = items[sid][0];
                     document.getElementById("comments").value = items[sid][1];

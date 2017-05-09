@@ -4,7 +4,7 @@ m_div.style.marginTop = "0.25em";
 var update_usertext = function() {
     m_div.innerHTML = "User Comments: ";
     var sid = window.location.pathname.split('/')[2];
-    chrome.storage.sync.get([sid], function(items) {
+    browser.storage.sync.get([sid]).then(function(items) {
         if (items[sid] !== undefined) {
             m_div.innerHTML += items[sid][1];
         }
@@ -14,9 +14,9 @@ var update_usertext = function() {
 update_usertext();
 document.getElementById("profile_top").appendChild(m_div);
 
-chrome.storage.onChanged.addListener(update_usertext);
+browser.storage.onChanged.addListener(update_usertext);
 
-chrome.runtime.onMessage.addListener(
+browser.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request["type"] == "ff-data") {
             var response = {
