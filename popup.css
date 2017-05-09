@@ -64,10 +64,6 @@ textarea.box {
     height: 5em;
 }
 
-input#favtick {
-    float: right;
-}
-
 .storyitem {
     padding-bottom: 0.5em;
     border-bottom: 1px solid black;

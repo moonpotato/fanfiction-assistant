@@ -15,7 +15,7 @@ var update_favs = function() {
                 item.innerHTML = "<em><strong>" + items[sid]["title"] +
                                 "</strong></em> by <em>" + items[sid]["author"] +
                                 "</em><br>" + items[sid]["summary"] + "<br>" +
-                                "<strong>User Comments:</strong> " + items[sid]["comments"];
+                                "<em>" + items[sid]["comments"] + "</em>";
                 
                 var createClickCallback = function(s) {
                     return function() {
