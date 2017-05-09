@@ -1,0 +1,6 @@
+*.zip
+HOSTING.txt
+*.crx
+*.pem
+*.xpi
+release/
