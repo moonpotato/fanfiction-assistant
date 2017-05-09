@@ -26,6 +26,12 @@
     text-align: right;
 }
 
+#plugtitle {
+    float: left;
+    padding-left: 0.3em;
+    padding-top: 0.15em;
+}
+
 .container {
     min-width: 32em;
     max-height: 30em;
