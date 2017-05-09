@@ -6,12 +6,20 @@ if (document.getElementsByClassName("xlight").length !== 0) {
     m_div.classList.add("xlight");
 }
 
+var fictitle;
+if (document.getElementById("profile_top").childNodes[0].tagName === "SPAN") {
+    fictitle = document.getElementById("profile_top").childNodes[2];
+} else {
+    fictitle = document.getElementById("profile_top").childNodes[1];
+}
+
 var update_usertext = function() {
     var sid = window.location.pathname.split('/')[2];
     browser.storage.sync.get([sid]).then(function(items) {
         if (items[sid] !== undefined) {
             m_div.innerHTML = "<strong>User Comments:</strong> ";
             m_div.innerHTML += items[sid][1];
+            fictitle.style.cssText = (items[sid][0]) ? "color: white !important; background-color: green !important;" : "";
         }
     });
 };
