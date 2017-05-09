@@ -17,6 +17,14 @@ var update_favs = function() {
                                 "</em><br>" + items[sid]["summary"] + "<br>" +
                                 "<strong>User Comments:</strong> " + items[sid]["comments"];
                 
+                var createClickCallback = function(s) {
+                    return function() {
+                        browser.tabs.update({url: "https://www.fanfiction.net/s/" + s});
+                    };
+                }
+                
+                item.addEventListener("click", createClickCallback(sid));
+                
                 favlist.appendChild(row);
             }
         }
