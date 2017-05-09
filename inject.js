@@ -1,11 +1,16 @@
 var m_div = document.createElement("div");
+
 m_div.style.marginTop = "0.25em";
+m_div.classList.add("xcontrast_txt");
+if (document.getElementsByClassName("xlight").length !== 0) {
+    m_div.classList.add("xlight");
+}
 
 var update_usertext = function() {
-    m_div.innerHTML = "User Comments: ";
     var sid = window.location.pathname.split('/')[2];
     browser.storage.sync.get([sid]).then(function(items) {
         if (items[sid] !== undefined) {
+            m_div.innerHTML = "<strong>User Comments:</strong> ";
             m_div.innerHTML += items[sid][1];
         }
     });
