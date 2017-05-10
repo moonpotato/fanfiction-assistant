@@ -88,3 +88,8 @@ textarea.box {
 #internaldata {
     height: 24em;
 }
+
+.annotation {
+    float: right;
+    margin-right: 1em;
+}

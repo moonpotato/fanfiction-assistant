@@ -12,10 +12,22 @@ var update_favs = function() {
                 row.appendChild(item)
                 item.classList.add("storyitem");
                 
-                item.innerHTML = "<em><strong>" + items[sid]["title"] +
-                                "</strong></em> by <em>" + items[sid]["author"] +
-                                "</em><br>" + items[sid]["summary"] + "<br>" +
-                                "<em>" + items[sid]["comments"] + "</em>";
+                var extrainfo = [];
+                if (items[sid]["read"]) {
+                    extrainfo.push("Read");
+                }
+                if (items[sid]["rating"]) {
+                    extrainfo.push("Rated: " + items[sid]["rating"]);
+                }
+                
+                var itemtext = "<em><strong>" + items[sid]["title"] +
+                                "</strong></em> by <em>" + items[sid]["author"] + "</em>";
+                if (extrainfo.length !== 0) {
+                    itemtext += '<em class="annotation">' + extrainfo.join(", ") + "</em>";
+                }
+                itemtext += "<br>" + items[sid]["summary"] + "<br><em>" + items[sid]["comments"] + "</em>";
+                
+                item.innerHTML = itemtext;
                 
                 var createClickCallback = function(s) {
                     return function() {
