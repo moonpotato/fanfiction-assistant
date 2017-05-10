@@ -84,6 +84,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
         });
+        
+        browser.tabs.sendMessage(tabs[0].id, {"type": "get-user"}).then(function(response) {
+            if (response["loggedin"]) {
+                document.getElementById("account").hidden = false;
+                document.getElementById("username").innerHTML = response["username"];
+            }
+        });
     });
     
     var databox = document.getElementById("internaldata");
