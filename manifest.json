@@ -17,7 +17,10 @@
     "permissions": [
         "activeTab",
         "storage",
-        "*://www.fanfiction.net/s/*"
+        "*://www.fanfiction.net/s/*",
+        "*://www.fanfiction.net/u/*",
+        "*://www.fanfiction.net/alert/*",
+        "*://www.fanfiction.net/favorites/*"
     ],
     "content_scripts": [{
         "matches": [
