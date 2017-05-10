@@ -18,7 +18,7 @@ var update_usertext = function() {
     browser.storage.sync.get([sid]).then(function(items) {
         if (items[sid] !== undefined) {
             m_div.innerHTML = "<strong>User Comments:</strong> ";
-            m_div.innerHTML += items[sid]["comments"];
+            m_div.innerHTML += "<em>" + items[sid]["comments"] + "</em>";
             if (items[sid]["favoured"]) {
                 fictitle.style.cssText = "color: white !important; background-color: green !important;";
             } else {
