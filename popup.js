@@ -136,7 +136,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     inbutton.addEventListener("click", function() {
-        browser.storage.sync.set(JSON.parse(databox.value));
+        browser.storage.sync.clear().then(function(items) {
+            browser.storage.sync.set(JSON.parse(databox.value)).then(function() {
+                update_favs();
+            });
+        });
     });
     
     update_favs();
