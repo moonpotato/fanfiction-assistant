@@ -33,7 +33,7 @@
 }
 
 .container {
-    min-width: 32em;
+    min-width: 34em;
     max-height: 30em;
     max-width: 48em;
 }
@@ -83,4 +83,8 @@ textarea.box {
 
 .storyitem:active:hover {
     background-color: blue;
+}
+
+#internaldata {
+    height: 24em;
 }

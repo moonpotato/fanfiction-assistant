@@ -86,5 +86,24 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
+    var databox = document.getElementById("internaldata");
+    var exbutton = document.getElementById("export");
+    var inbutton = document.getElementById("import");
+    
+    databox.addEventListener("paste", function() {
+        inbutton.disabled = false;
+    });
+    
+    exbutton.addEventListener("click", function() {
+        browser.storage.sync.get(null).then(function(items) {
+            databox.value = JSON.stringify(items, null, 1);
+            inbutton.disabled = false;
+        });
+    });
+    
+    inbutton.addEventListener("click", function() {
+        browser.storage.sync.set(JSON.parse(databox.value));
+    });
+    
     update_favs();
 });

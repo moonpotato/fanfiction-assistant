@@ -11,15 +11,16 @@
             <strong id="plugtitle">Fanfiction Assistant</strong>
             <div class="button active">Current Story</div>
             <div class="button">Favourite Stories</div>
+            <div class="button">Settings</div>
         </div>
         <div id="content">
             <div id="current" class="container">
                 <span id="sid" hidden></span>
                 <div class="box">
-                    <strong>Title: </strong><span id="title"></span><br>
-                    <strong>Author: </strong><span id="author"></span><br>
-                    <strong>Summary: </strong><span id="summary"></span><br>
-                    <strong>Favourite: </strong><input type="checkbox" id="favtick"><br>
+                    <strong>Title:</strong> <span id="title"></span><br>
+                    <strong>Author:</strong> <span id="author"></span><br>
+                    <strong>Summary:</strong> <span id="summary"></span><br>
+                    <strong>Favourite:</strong> <input type="checkbox" id="favtick"><br>
                     <strong>User Comments:</strong>
                 </div>
                 <textarea id="comments" class="box"></textarea>
@@ -28,7 +29,15 @@
             <div id="favourites" class="container scrolling" hidden>
                 <table id="favlist" class="storylist noselect"></table>
             </div>
+            <div id="settings" class="container" hidden>
+                <div class="box">
+                    <strong>You are logged in as:</strong> <span id="username"></span><hr>
+                    <strong>Export/Import Data:</strong>
+                </div>
+                <textarea id="internaldata" class="box"></textarea>
+                <button id="export">Export</button>
+                <button id="import" disabled>Import</button>
+            </div>
         </div>
-        
     </body>
 </html>
