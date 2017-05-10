@@ -34,7 +34,10 @@ var update_favs = function() {
                 
                 var createClickCallback = function(s) {
                     return function() {
-                        browser.tabs.create({url: "https://www.fanfiction.net/s/" + s});
+                        browser.tabs.create({
+                            url: "https://www.fanfiction.net/s/" + s,
+                            active: false
+                        });
                     };
                 }
                 
