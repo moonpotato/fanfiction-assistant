@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["author"] = document.getElementById("author").innerHTML;
         store[sid]["summary"] = document.getElementById("summary").innerHTML;
         store[sid]["favoured"] = document.getElementById("favtick").checked;
+        store[sid]["read"] = document.getElementById("readtick").checked;
+        store[sid]["rating"] = document.getElementById("userrating").value;
         store[sid]["comments"] = document.getElementById("comments").value;
         
         browser.storage.sync.set(store).then(update_favs);
@@ -77,9 +79,13 @@ document.addEventListener("DOMContentLoaded", function() {
             browser.storage.sync.get([sid]).then(function(items) {
                 if (items[sid] !== undefined) {
                     document.getElementById("favtick").checked = items[sid]["favoured"];
+                    document.getElementById("readtick").checked = items[sid]["read"];
+                    document.getElementById("userrating").value = items[sid]["rating"];
                     document.getElementById("comments").value = items[sid]["comments"];
                 } else {
                     document.getElementById("favtick").checked = false;
+                    document.getElementById("readtick").checked = false;
+                    document.getElementById("userrating").value = "";
                     document.getElementById("comments").value = "";
                 }
             });
