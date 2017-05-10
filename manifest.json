@@ -20,7 +20,19 @@
         "*://www.fanfiction.net/s/*",
         "*://www.fanfiction.net/u/*",
         "*://www.fanfiction.net/alert/*",
-        "*://www.fanfiction.net/favorites/*"
+        "*://www.fanfiction.net/favorites/*",
+        "*://www.fanfiction.net/j/*",
+        "*://www.fanfiction.net/community/*",
+        "*://www.fanfiction.net/anime/*",
+        "*://www.fanfiction.net/book/*",
+        "*://www.fanfiction.net/cartoon/*",
+        "*://www.fanfiction.net/comic/*",
+        "*://www.fanfiction.net/game/*",
+        "*://www.fanfiction.net/misc/*",
+        "*://www.fanfiction.net/play/*",
+        "*://www.fanfiction.net/movie/*",
+        "*://www.fanfiction.net/tv/*",
+        "*://www.fanfiction.net/*-Crossovers/*"
     ],
     "content_scripts": [{
         "matches": [
