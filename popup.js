@@ -13,6 +13,9 @@ var update_favs = function() {
                 item.classList.add("storyitem");
                 
                 var extrainfo = [];
+                if (typeof items[sid]["status"] == "number") {
+                    extrainfo.push(document.getElementById("status").childNodes[items[sid]["status"]*2+1].innerHTML);
+                }
                 if (items[sid]["read"]) {
                     extrainfo.push("Read");
                 }
@@ -76,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["read"] = document.getElementById("readtick").checked;
         store[sid]["rating"] = document.getElementById("userrating").value;
         store[sid]["comments"] = document.getElementById("comments").value;
+        store[sid]["status"] = document.getElementById("status").selectedIndex;
         
         browser.storage.sync.set(store).then(update_favs);
     });
@@ -94,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("readtick").checked = items[sid]["read"];
                     document.getElementById("userrating").value = items[sid]["rating"];
                     document.getElementById("comments").value = items[sid]["comments"];
+                    document.getElementById("status").selectedIndex = items[sid]["status"];
                 } else {
                     document.getElementById("favtick").checked = false;
                     document.getElementById("readtick").checked = false;
