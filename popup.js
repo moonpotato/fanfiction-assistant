@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("readtick").checked = false;
                     document.getElementById("userrating").value = "";
                     document.getElementById("comments").value = "";
+                    document.getElementById("status").selectedIndex = response["status"];
                 }
             });
         });

@@ -62,6 +62,9 @@ browser.runtime.onMessage.addListener(
                 XPathResult.ANY_TYPE,
                 null
             ).iterateNext().data;
+            response["status"] = ((document.getElementById("profile_top").innerHTML.includes("Status: Complete"))
+                                  ? 1
+                                  : 0);
             
             sendResponse(response);
         }
