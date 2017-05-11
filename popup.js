@@ -156,10 +156,10 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < filterinputs.length; ++i) {
         if (filterinputs[i].tagName == "INPUT") {
             if (filterinputs[i].type == "checkbox") {
-                filterinputs[i].addEventListener("onclick", update_list);
+                filterinputs[i].addEventListener("click", update_list);
             }
             else if (filterinputs[i].type == "search") {
-                filterinputs[i].addEventListener("onkeydown", update_list);
+                filterinputs[i].addEventListener("keydown", update_list);
             }
         }
     }
