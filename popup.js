@@ -1,24 +1,40 @@
-var update_favs = function() {
+var update_list = function() {
     browser.storage.sync.get(null).then(function(items) {
-        var favlist = document.getElementById("favlist");
-        while (favlist.firstChild) {
-            favlist.removeChild(favlist.firstChild);
+        var storylist = document.getElementById("storylist");
+        while (storylist.firstChild) {
+            storylist.removeChild(storylist.firstChild);
         }
         
         for (var sid in items) {
-            if (items.hasOwnProperty(sid) && items[sid]["favoured"] === true) {
+            if (items.hasOwnProperty(sid) && sid) {
                 var row = document.createElement("tr");
                 var item = document.createElement("td");
                 row.appendChild(item)
                 item.classList.add("storyitem");
                 
+                //var statustext = document.getElementById("status").childNodes[items[sid]["status"]*2+1].innerHTML;
+                
+                /*// Skip this story if it doesn't match a filter
+                if (document.getElementById("favfilter").checked && !items[sid]["favoured"]) {
+                    continue;
+                }
+                if (document.getElementById("readfilter").checked && !items[sid]["read"]) {
+                    continue;
+                }
+                if (document.getElementById("completefilter").checked && (statustext != "Complete") {
+                    continue;
+                }*/
+                
                 var extrainfo = [];
-                if (typeof items[sid]["status"] == "number") {
-                    extrainfo.push(document.getElementById("status").childNodes[items[sid]["status"]*2+1].innerHTML);
+                if (items[sid]["favoured"]) {
+                    extrainfo.push("Favoured");
                 }
                 if (items[sid]["read"]) {
                     extrainfo.push("Read");
                 }
+                //if (typeof items[sid]["status"] == "number") {
+                //    extrainfo.push(statustext);
+                //}
                 if (items[sid]["rating"]) {
                     extrainfo.push("Rated: " + items[sid]["rating"]);
                 }
@@ -43,7 +59,7 @@ var update_favs = function() {
                 
                 item.addEventListener("click", createClickCallback(sid));
                 
-                favlist.appendChild(row);
+                storylist.appendChild(row);
             }
         }
     });
@@ -84,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["comments"] = document.getElementById("comments").value;
         store[sid]["status"] = document.getElementById("status").selectedIndex;
         
-        browser.storage.sync.set(store).then(update_favs);
+        browser.storage.sync.set(store).then(update_list);
     });
     
     browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
@@ -140,10 +156,10 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < filterinputs.length; ++i) {
         if (filterinputs[i].tagName == "INPUT") {
             if (filterinputs[i].type == "checkbox") {
-                filterinputs[i].addEventListener("onclick", update_favs);
+                filterinputs[i].addEventListener("onclick", update_list);
             }
             else if (filterinputs[i].type == "search") {
-                filterinputs[i].addEventListener("onkeydown", update_favs);
+                filterinputs[i].addEventListener("onkeydown", update_list);
             }
         }
     }
@@ -151,10 +167,10 @@ document.addEventListener("DOMContentLoaded", function() {
     inbutton.addEventListener("click", function() {
         browser.storage.sync.clear().then(function(items) {
             browser.storage.sync.set(JSON.parse(databox.value)).then(function() {
-                update_favs();
+                update_list();
             });
         });
     });
     
-    update_favs();
+    update_list();
 });
