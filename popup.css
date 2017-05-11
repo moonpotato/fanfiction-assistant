@@ -32,6 +32,10 @@
     padding-top: 0.15em;
 }
 
+#content {
+    background-color: lightgray;
+}
+
 .container {
     min-width: 34em;
     max-height: 31em;
