@@ -11,6 +11,7 @@
             <strong id="plugtitle">Fanfiction Assistant</strong>
             <div class="button active">Current Story</div>
             <div class="button">Saved Stories</div>
+            <div class="button">Account</div>
             <div class="button">Settings</div>
         </div>
         <div id="content">
@@ -51,10 +52,15 @@
                     Search: <input type="search" id="searchfilter">
                 </div>
             </div>
-            <div id="settings" class="container" hidden>
-                <em id="notloggedin">You're not logged in.</em>
-                <div id="areloggedin" class="box" hidden>
+            <div id="account" class="container" hidden>
+                <div id="notloggedin">You're not logged in.</div>
+                <div id="areloggedin" hidden>
                     Welcome, <em id="username"></em>.
+                </div>
+            </div>
+            <div id="settings" class="container" hidden>
+                <div class="box">
+                    <em>Configuration options will go here.</em>
                 </div>
                 <hr>
                 <div class="box">
