@@ -155,7 +155,8 @@ document.addEventListener("DOMContentLoaded", function() {
         
         browser.tabs.sendMessage(tabs[0].id, {"type": "get-user"}).then(function(response) {
             if (response["loggedin"]) {
-                document.getElementById("account").hidden = false;
+                document.getElementById("notloggedin").hidden = true;
+                document.getElementById("areloggedin").hidden = false;
                 document.getElementById("username").innerHTML = response["username"];
             }
         });
