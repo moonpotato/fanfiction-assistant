@@ -25,8 +25,9 @@ var update_list = function() {
                 
                 var searchtext = document.getElementById("searchfilter").value;
                 if (searchtext != "") {
-                    if (!items[sid]["title"].includes(searchtext)
-                        && !items[sid]["author"].includes(searchtext)) {
+                    searchtext = new RegExp(searchtext, 'i');
+                    if ((items[sid]["title"].search(searchtext) === -1)
+                        && (items[sid]["author"].search(searchtext) === -1)) {
                         continue;
                     }
                 }
