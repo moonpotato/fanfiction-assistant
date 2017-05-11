@@ -12,8 +12,6 @@ var update_list = function() {
                 row.appendChild(item)
                 item.classList.add("storyitem");
                 
-                //var statustext = document.getElementById("status").childNodes[items[sid]["status"]*2+1].innerHTML;
-                
                 // Skip this story if it doesn't match a filter
                 if (document.getElementById("favfilter").checked && !items[sid]["favoured"]) {
                     continue;
@@ -21,9 +19,17 @@ var update_list = function() {
                 if (document.getElementById("readfilter").checked && !items[sid]["read"]) {
                     continue;
                 }
-                //if (document.getElementById("completefilter").checked && (statustext != "Complete") {
-                //    continue;
-                //}
+                if (document.getElementById("completefilter").checked && (items[sid]["status"] !== 1)) {
+                    continue;
+                }
+                
+                var searchtext = document.getElementById("searchfilter").value;
+                if (searchtext != "") {
+                    if (!items[sid]["title"].includes(searchtext)
+                        && !items[sid]["author"].includes(searchtext)) {
+                        continue;
+                    }
+                }
                 
                 var extrainfo = [];
                 if (items[sid]["favoured"]) {
@@ -32,9 +38,9 @@ var update_list = function() {
                 if (items[sid]["read"]) {
                     extrainfo.push("Read");
                 }
-                //if (typeof items[sid]["status"] == "number") {
-                //    extrainfo.push(statustext);
-                //}
+                if (typeof items[sid]["status"] == "number") {
+                    extrainfo.push(["In-Progress", "Complete", "Abandoned"][items[sid]["status"]]);
+                }
                 if (items[sid]["rating"]) {
                     extrainfo.push("Rated: " + items[sid]["rating"]);
                 }
