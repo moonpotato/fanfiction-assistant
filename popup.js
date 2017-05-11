@@ -19,6 +19,9 @@ var update_list = function() {
                 if (document.getElementById("readfilter").checked && !items[sid]["read"]) {
                     continue;
                 }
+                if (document.getElementById("pendingfilter").checked && !items[sid]["pending"]) {
+                    continue;
+                }
                 if (document.getElementById("completefilter").checked && (items[sid]["status"] !== 1)) {
                     continue;
                 }
@@ -38,6 +41,9 @@ var update_list = function() {
                 }
                 if (items[sid]["read"]) {
                     extrainfo.push("Read");
+                }
+                if (items[sid]["pending"]) {
+                    extrainfo.push("Pending");
                 }
                 if (typeof items[sid]["status"] == "number") {
                     extrainfo.push(["In-Progress", "Complete", "Abandoned"][items[sid]["status"]]);
@@ -103,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["summary"] = document.getElementById("summary").innerHTML;
         store[sid]["favoured"] = document.getElementById("favtick").checked;
         store[sid]["read"] = document.getElementById("readtick").checked;
+        store[sid]["pending"] = document.getElementById("pendingtick").checked;
         store[sid]["rating"] = document.getElementById("userrating").value;
         store[sid]["comments"] = document.getElementById("comments").value;
         store[sid]["status"] = document.getElementById("status").selectedIndex;
@@ -122,12 +129,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (items[sid] !== undefined) {
                     document.getElementById("favtick").checked = items[sid]["favoured"];
                     document.getElementById("readtick").checked = items[sid]["read"];
+                    document.getElementById("pendingtick").checked = items[sid]["pending"];
                     document.getElementById("userrating").value = items[sid]["rating"];
                     document.getElementById("comments").value = items[sid]["comments"];
                     document.getElementById("status").selectedIndex = items[sid]["status"];
                 } else {
                     document.getElementById("favtick").checked = false;
                     document.getElementById("readtick").checked = false;
+                    document.getElementById("pendingtick").checked = false;
                     document.getElementById("userrating").value = "";
                     document.getElementById("comments").value = "";
                     document.getElementById("status").selectedIndex = response["status"];
