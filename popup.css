@@ -34,12 +34,13 @@
 
 .container {
     min-width: 34em;
-    max-height: 30em;
+    max-height: 31em;
     max-width: 48em;
 }
 
-.container.scrolling {
+.scrolling {
     overflow-y: scroll;
+    max-height: 30em;
 }
 
 #content {
@@ -92,4 +93,21 @@ textarea.box {
 .annotation {
     float: right;
     margin-right: 1em;
+}
+
+#filters {
+    text-align: right;
+    padding-top: 3px;
+    border-top: 1px solid black;
+}
+
+#filterlabel {
+    float: left;
+    position: relative;
+    top: -2px;
+}
+
+#searchfilter {
+    width: 20em;
+    padding-left: 0.5em;
 }

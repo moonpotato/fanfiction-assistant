@@ -37,8 +37,17 @@
                 <textarea id="comments" class="box"></textarea>
                 <button id="save">Save</button>
             </div>
-            <div id="favourites" class="container scrolling" hidden>
-                <table id="favlist" class="storylist noselect"></table>
+            <div id="favourites" class="container" hidden>
+                <div class="scrolling">
+                    <table id="favlist" class="storylist noselect"></table>
+                </div>
+                <div id="filters" class="box">
+                    <strong id="filterlabel">Filters:</strong>
+                    Favoured: <input type="checkbox" id="favfilter">
+                    Read: <input type="checkbox" id="readfilter">
+                    Complete: <input type="checkbox" id="completefilter">
+                    Search: <input type="search" id="searchfilter">
+                </div>
             </div>
             <div id="settings" class="container" hidden>
                 <div id="account" class="box" hidden>

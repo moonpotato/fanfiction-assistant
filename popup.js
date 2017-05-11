@@ -135,6 +135,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     
+    var filterinputs = document.getElementById("filters").childNodes;
+    
+    for (var i = 0; i < filterinputs.length; ++i) {
+        if (filterinputs[i].tagName == "INPUT") {
+            if (filterinputs[i].type == "checkbox") {
+                filterinputs[i].addEventListener("onclick", update_favs);
+            }
+            else if (filterinputs[i].type == "search") {
+                filterinputs[i].addEventListener("onkeydown", update_favs);
+            }
+        }
+    }
+    
     inbutton.addEventListener("click", function() {
         browser.storage.sync.clear().then(function(items) {
             browser.storage.sync.set(JSON.parse(databox.value)).then(function() {
