@@ -7,8 +7,8 @@
     },
     
     "name": "Fanfiction Assistant",
-    "description": "A simple assistant for reading fanfiction on fanfiction.net",
-    "version": "4.5",
+    "description": "A simple assistant to track your reading on fanfiction.net",
+    "version": "5.0",
     
     "browser_action": {
         "default_icon": "icon.png",
