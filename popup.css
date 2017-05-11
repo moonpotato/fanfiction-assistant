@@ -68,7 +68,7 @@ strong {
 
 textarea.box {
     width: 100%;
-    height: 5em;
+    height: 7em;
 }
 
 .storyitem {
@@ -86,7 +86,7 @@ textarea.box {
 }
 
 #internaldata {
-    height: 24em;
+    height: 12em;
 }
 
 .annotation {
