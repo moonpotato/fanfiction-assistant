@@ -7,7 +7,7 @@
         <script type="text/javascript" src="popup.js"></script>
     </head>
     <body>
-        <div id="top-row" class="noselect">
+        <div id="top-row">
             <strong id="plugtitle">Fanfiction Assistant</strong>
             <div class="button active">Current Story</div>
             <div class="button">Saved Stories</div>
@@ -18,9 +18,9 @@
             <div id="current" class="container">
                 <span id="sid" hidden></span>
                 <div class="box">
-                    <strong>Title:</strong> <span id="title"></span><br>
-                    <strong>Author:</strong> <span id="author"></span><br>
-                    <strong>Summary:</strong> <span id="summary"></span>
+                    <strong>Title:</strong> <span id="title" class="selectable"></span><br>
+                    <strong>Author:</strong> <span id="author" class="selectable"></span><br>
+                    <strong>Summary:</strong> <span id="summary" class="selectable"></span>
                 </div>
                 <div class="box">
                     <strong>Favourite:</strong> <input type="checkbox" id="favtick">
@@ -41,7 +41,7 @@
             </div>
             <div id="stories" class="container" hidden>
                 <div class="scrolling">
-                    <table id="storylist" class="noselect"></table>
+                    <table id="storylist"></table>
                 </div>
                 <div id="filters" class="box">
                     <strong id="filterlabel">Filters:</strong>
