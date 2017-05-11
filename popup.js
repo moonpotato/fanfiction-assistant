@@ -14,16 +14,16 @@ var update_list = function() {
                 
                 //var statustext = document.getElementById("status").childNodes[items[sid]["status"]*2+1].innerHTML;
                 
-                /*// Skip this story if it doesn't match a filter
+                // Skip this story if it doesn't match a filter
                 if (document.getElementById("favfilter").checked && !items[sid]["favoured"]) {
                     continue;
                 }
                 if (document.getElementById("readfilter").checked && !items[sid]["read"]) {
                     continue;
                 }
-                if (document.getElementById("completefilter").checked && (statustext != "Complete") {
-                    continue;
-                }*/
+                //if (document.getElementById("completefilter").checked && (statustext != "Complete") {
+                //    continue;
+                //}
                 
                 var extrainfo = [];
                 if (items[sid]["favoured"]) {
