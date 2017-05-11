@@ -114,7 +114,15 @@ document.addEventListener("DOMContentLoaded", function() {
         store[sid]["comments"] = document.getElementById("comments").value;
         store[sid]["status"] = document.getElementById("status").selectedIndex;
         
-        browser.storage.sync.set(store).then(update_list);
+        browser.storage.sync.set(store).then(function() {
+            document.getElementById("delete").disabled = false;
+            update_list();
+        });
+    });
+    
+    document.getElementById("delete").addEventListener("click", function() {
+        var sid = document.getElementById("sid").innerHTML;
+        browser.storage.sync.remove([sid]).then(update_list);
     });
     
     browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
@@ -133,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("userrating").value = items[sid]["rating"];
                     document.getElementById("comments").value = items[sid]["comments"];
                     document.getElementById("status").selectedIndex = items[sid]["status"];
+                    document.getElementById("delete").disabled = false;
                 } else {
                     document.getElementById("favtick").checked = false;
                     document.getElementById("readtick").checked = false;
