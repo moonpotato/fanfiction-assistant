@@ -25,6 +25,10 @@ var update_usertext = function() {
                 fictitle.style.cssText = "";
             }
         }
+        else {
+            m_div.innerHTML = "";
+            fictitle.style.cssText = "";
+        }
     });
 };
 
