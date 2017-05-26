@@ -97,16 +97,16 @@ var update_list = function() {
                         dropdown.style.left = mousePosX + "px";
                         dropdown.style.top = mousePosY + "px";
                         
-                        document.getElementById("storytabopen").addEventListener("click", function() {
+                        document.getElementById("storytabopen").onclick = function() {
                             browser.tabs.create({
                                 url: "https://www.fanfiction.net/s/" + s,
                                 active: false
                             });
                             
                             dropdown.setAttribute("hidden", "hidden");
-                        });
+                        };
                         
-                        document.getElementById("editstorypane").addEventListener("click", function() {
+                        document.getElementById("editstorypane").onclick = function() {
                             browser.storage.sync.get([s]).then(function(items) {
                                 document.getElementById("sid").innerHTML = s;
                                 document.getElementById("aid").innerHTML = items[s]["aid"];
@@ -125,7 +125,7 @@ var update_list = function() {
                                 cameFromCtxMenu = true;
                                 document.getElementById("currtab").click();
                             });
-                        });
+                        };
                         
                         dropdown.removeAttribute("hidden");
                     };
