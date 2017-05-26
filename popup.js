@@ -132,57 +132,7 @@ var update_list = function() {
     });
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-    var buttons = document.getElementsByClassName("button");
-    
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener("click", function() {
-            var buttons = document.getElementsByClassName("button");
-            var containers = document.getElementsByClassName("container");
-            
-            for (var i = 0; i < buttons.length; i++) {
-                if (this === buttons[i]) {
-                    buttons[i].classList.add("active");
-                    containers[i].removeAttribute("hidden");
-                } else {
-                    buttons[i].classList.remove("active");
-                    containers[i].setAttribute("hidden", "hidden");
-                }
-            }
-        });
-    }
-    
-    document.getElementById("savedtab").addEventListener("click", function() {
-        document.getElementById("searchfilter").focus();
-    });
-    
-    document.getElementById("save").addEventListener("click", function() {
-        var store = {};
-        
-        var sid = document.getElementById("sid").innerHTML;
-        store[sid] = {};
-        
-        store[sid]["title"] = document.getElementById("title").innerHTML;
-        store[sid]["author"] = document.getElementById("author").innerHTML;
-        store[sid]["summary"] = document.getElementById("summary").innerHTML;
-        store[sid]["favoured"] = document.getElementById("favtick").checked;
-        store[sid]["read"] = document.getElementById("readtick").checked;
-        store[sid]["pending"] = document.getElementById("pendingtick").checked;
-        store[sid]["rating"] = document.getElementById("userrating").value;
-        store[sid]["comments"] = document.getElementById("comments").value;
-        store[sid]["status"] = document.getElementById("status").selectedIndex;
-        
-        browser.storage.sync.set(store).then(function() {
-            document.getElementById("delete").disabled = false;
-            update_list();
-        });
-    });
-    
-    document.getElementById("delete").addEventListener("click", function() {
-        var sid = document.getElementById("sid").innerHTML;
-        browser.storage.sync.remove([sid]).then(update_list);
-    });
-    
+var fetch_tab_story = function() {
     browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {"type": "ff-data"}).then(function(response) {
             document.getElementById("title").innerHTML = response["title"];
@@ -221,6 +171,62 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+    var buttons = document.getElementsByClassName("button");
+    
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+            var buttons = document.getElementsByClassName("button");
+            var containers = document.getElementsByClassName("container");
+            
+            for (var i = 0; i < buttons.length; i++) {
+                if (this === buttons[i]) {
+                    buttons[i].classList.add("active");
+                    containers[i].removeAttribute("hidden");
+                } else {
+                    buttons[i].classList.remove("active");
+                    containers[i].setAttribute("hidden", "hidden");
+                }
+            }
+        });
+    }
+    
+    document.getElementById("currtab").addEventListener("click", fetch_tab_story);
+    
+    document.getElementById("savedtab").addEventListener("click", function() {
+        document.getElementById("searchfilter").focus();
+    });
+    
+    document.getElementById("save").addEventListener("click", function() {
+        var store = {};
+        
+        var sid = document.getElementById("sid").innerHTML;
+        store[sid] = {};
+        
+        store[sid]["title"] = document.getElementById("title").innerHTML;
+        store[sid]["author"] = document.getElementById("author").innerHTML;
+        store[sid]["summary"] = document.getElementById("summary").innerHTML;
+        store[sid]["favoured"] = document.getElementById("favtick").checked;
+        store[sid]["read"] = document.getElementById("readtick").checked;
+        store[sid]["pending"] = document.getElementById("pendingtick").checked;
+        store[sid]["rating"] = document.getElementById("userrating").value;
+        store[sid]["comments"] = document.getElementById("comments").value;
+        store[sid]["status"] = document.getElementById("status").selectedIndex;
+        
+        browser.storage.sync.set(store).then(function() {
+            document.getElementById("delete").disabled = false;
+            update_list();
+        });
+    });
+    
+    document.getElementById("delete").addEventListener("click", function() {
+        var sid = document.getElementById("sid").innerHTML;
+        browser.storage.sync.remove([sid]).then(update_list);
+    });
+    
+    fetch_tab_story();
     
     var databox = document.getElementById("internaldata");
     var exbutton = document.getElementById("export");
