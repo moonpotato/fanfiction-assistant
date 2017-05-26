@@ -152,6 +152,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
+    document.getElementById("savedtab").addEventListener("click", function() {
+        document.getElementById("searchfilter").focus();
+    });
+    
     document.getElementById("save").addEventListener("click", function() {
         var store = {};
         
