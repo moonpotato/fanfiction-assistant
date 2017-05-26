@@ -59,6 +59,13 @@ browser.runtime.onMessage.addListener(
                 XPathResult.ANY_TYPE,
                 null
             ).iterateNext().data;
+            response["aid"] = document.evaluate(
+                '//*[@id="profile_top"]/a[1]/@href',
+                document,
+                null,
+                XPathResult.ANY_TYPE,
+                null
+            ).iterateNext().value.split('/')[2];
             response["summary"] = document.evaluate(
                 '//*[@id="profile_top"]/div/text()',
                 document,
