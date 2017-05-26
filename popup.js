@@ -80,9 +80,13 @@ var update_list = function() {
                 
                 var createClickCallback = function(s) {
                     return function() {
-                        browser.tabs.create({
-                            url: "https://www.fanfiction.net/s/" + s,
-                            active: false
+                        browser.tabs.query({active: true, currentWindow: true}).then(function(tabs) {
+                            browser.tabs.update(tabs[0].id, {
+                                url: "https://www.fanfiction.net/s/" + s,
+                                active: true
+                            });
+                            
+                            window.close();
                         });
                     };
                 };
@@ -161,6 +165,8 @@ var fetch_tab_story = function() {
                     document.getElementById("comments").value = "";
                     document.getElementById("status").selectedIndex = response["status"];
                 }
+                
+                document.getElementById("comments").focus();
             });
         }).catch(function() {
             document.getElementById("savedtab").click();
@@ -202,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         else {
             cameFromCtxMenu = false;
+            document.getElementById("comments").focus();
         }
     });
     
