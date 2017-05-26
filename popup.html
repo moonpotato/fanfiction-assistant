@@ -62,14 +62,28 @@
                 <div id="notloggedin">You're not logged in.</div>
                 <div id="areloggedin" hidden>
                     Welcome, <em id="username"></em>.
+                    <hr>
+                    <div class="box">
+                        <strong>Import:</strong><br>
+                        Import stories from your fanfiction.net favourites: <input type="checkbox" id="importfavs"><br>
+                        Import stories from your fanfiction.net follows: <input type="checkbox" id="importfollows">
+                    </div>
+                    <button id="importffn">Import</button>
+                    <hr>
+                    <div class="box">
+                        <strong>Export:</strong><br>
+                        Export favoured stories to your fanfiction.net favourites: <input type="checkbox" id="exportfavs"><br>
+                        Export incomplete stories to your fanfiction.net follows: <input type="checkbox" id="exportfollows">
+                    </div>
+                    <button id="exportffn">Export</button>
                 </div>
             </div>
             <div id="settings" class="container" hidden>
                 <div class="box">
-                    <strong>Settings:</strong><br>
+                    <strong>Settings:</strong>
                 </div>
                 <div class="box">
-                    Always default to Saved Stories tab: <input type="checkbox" id="defaultsaved" class="settingsoption"><br>
+                    Always default to Saved Stories tab: <input type="checkbox" id="defaultsaved" class="settingsoption">
                 </div>
                 <button id="savesettings">Save</button>
                 <hr>
