@@ -13,6 +13,8 @@ document.addEventListener("click", function() {
     }
 });
 
+var cameFromCtxMenu = false;
+
 var update_list = function() {
     browser.storage.sync.get(null).then(function(items) {
         var storylist = document.getElementById("storylist");
@@ -115,6 +117,7 @@ var update_list = function() {
                                 document.getElementById("delete").disabled = false;
                                 
                                 dropdown.setAttribute("hidden", "hidden");
+                                cameFromCtxMenu = true;
                                 document.getElementById("currtab").click();
                             });
                         });
@@ -193,7 +196,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    document.getElementById("currtab").addEventListener("click", fetch_tab_story);
+    document.getElementById("currtab").addEventListener("click", function() {
+        if (!cameFromCtxMenu) {
+            fetch_tab_story();
+        }
+        else {
+            cameFromCtxMenu = false;
+        }
+    });
     
     document.getElementById("savedtab").addEventListener("click", function() {
         document.getElementById("searchfilter").focus();
