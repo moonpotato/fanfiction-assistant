@@ -1,3 +1,18 @@
+var mousePosX = 0;
+var mousePosY = 0;
+
+document.addEventListener("mousemove", function(event) {
+    mousePosX = event.clientX;
+    mousePosY = event.clientY;
+});
+
+document.addEventListener("click", function() {
+    var dropdowns = document.getElementsByClassName("dropdown");
+    for (var i = 0; i < dropdowns.length; ++i) {
+        dropdowns[i].setAttribute("hidden", "hidden");
+    }
+});
+
 var update_list = function() {
     browser.storage.sync.get(null).then(function(items) {
         var storylist = document.getElementById("storylist");
@@ -68,9 +83,22 @@ var update_list = function() {
                             active: false
                         });
                     };
-                }
+                };
+                
+                var createRightClickCallback = function(s) {
+                    return function() {
+                        var dropdown = document.getElementById("storymenu");
+                        dropdown.style.left = mousePosX + "px";
+                        dropdown.style.top = mousePosY + "px";
+                        
+                        
+                        
+                        dropdown.removeAttribute("hidden");
+                    };
+                };
                 
                 item.addEventListener("click", createClickCallback(sid));
+                item.addEventListener("contextmenu", createRightClickCallback(sid));
                 
                 storylist.appendChild(row);
             }
