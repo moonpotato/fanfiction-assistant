@@ -183,6 +183,15 @@ var fetch_tab_story = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function() {
+    browser.storage.sync.get(["config_options"]).then(function(items) {
+        if (items["config_options"] !== undefined) {
+            if (items["config_options"]["alwayssaved"]) {
+                document.getElementById("savedtab").click();
+                document.getElementById("defaultsaved").checked = true;
+            }
+        }
+    });
+    
     var buttons = document.getElementsByClassName("button");
     
     for (var i = 0; i < buttons.length; i++) {
