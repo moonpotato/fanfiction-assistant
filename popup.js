@@ -185,11 +185,23 @@ var fetch_tab_story = function() {
 document.addEventListener("DOMContentLoaded", function() {
     browser.storage.sync.get(["config_options"]).then(function(items) {
         if (items["config_options"] !== undefined) {
-            if (items["config_options"]["alwayssaved"]) {
+            if (items["config_options"]["defaultsaved"]) {
                 document.getElementById("savedtab").click();
                 document.getElementById("defaultsaved").checked = true;
             }
         }
+    });
+    
+    document.getElementById("savesettings").addEventListener("click", function() {
+        var settingsOptions = document.getElementsByClassName("settingsoption");
+        var items = {};
+        items["config_options"] = {};
+        
+        for (var i = 0; i < settingsOptions.length; ++i) {
+            items["config_options"][settingsOptions[i].id] = settingsOptions[i].checked;
+        }
+        
+        browser.storage.sync.set(items);
     });
     
     var buttons = document.getElementsByClassName("button");
