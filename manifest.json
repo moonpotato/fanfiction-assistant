@@ -44,7 +44,7 @@
             "*://www.fanfiction.net/s/*"
         ],
         "js": [
-            "inject.js"
+            "story.js"
         ],
         "run_at": "document_end"
     }]
