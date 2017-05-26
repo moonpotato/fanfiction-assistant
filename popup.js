@@ -265,6 +265,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     fetch_tab_story();
+    update_list();
     
     var databox = document.getElementById("internaldata");
     var exbutton = document.getElementById("export");
@@ -301,6 +302,4 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     });
-    
-    update_list();
 });
