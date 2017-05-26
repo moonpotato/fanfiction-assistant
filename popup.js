@@ -305,4 +305,44 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     });
+    
+    document.getElementById("exportffn").addEventListener("click", function() {
+        browser.storage.sync.get(null).then(function(items) {
+            var doAnyFollows = document.getElementById("exportfollows").checked;
+            var doAnyFavourites = document.getElementById("exportfavs").checked;
+            
+            for (var sid in items) {
+                if (items.hasOwnProperty(sid) && sid && sid != "config_options") {
+                    var request = new XMLHttpRequest();
+                    request.open("POST", "https://www.fanfiction.net/api/ajax_subs.php");
+                    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    
+                    var doFollowStory = 0;
+                    if (doAnyFollows && items[sid]["status"] != 1) {
+                        doFollowStory = 1;
+                    }
+                    
+                    var doFavouriteStory = 0;
+                    if (doAnyFavourites && items[sid]["favoured"]) {
+                        doFavouriteStory = 1;
+                    }
+                    
+                    var params = "storyid=" + sid +
+                                 "&userid=" + items[sid]["aid"] +
+                                 "&authoralert=0" +
+                                 "&storyalert=" + doFollowStory +
+                                 "&favstory=" + doFavouriteStory +
+                                 "&favauthor=0";
+                    
+                    request.onreadystatechange = function() {
+                        if (request.readyState == 4) {
+                            console.log(request.response);
+                        }
+                    };
+                    
+                    request.send(params);
+                }
+            }
+        });
+    });
 });
