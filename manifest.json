@@ -8,7 +8,7 @@
     
     "name": "Fanfiction Assistant",
     "description": "A simple assistant to track your reading on fanfiction.net",
-    "version": "5.4",
+    "version": "5.5",
     "icons": {
         "16": "icon.png",
         "48": "icon48.png",
