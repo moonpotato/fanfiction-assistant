@@ -23,7 +23,7 @@ var update_list = function() {
         }
         
         for (var sid in items) {
-            if (items.hasOwnProperty(sid) && sid) {
+            if (items.hasOwnProperty(sid) && sid && sid != "config_options") {
                 var row = document.createElement("tr");
                 var item = document.createElement("td");
                 row.appendChild(item)
