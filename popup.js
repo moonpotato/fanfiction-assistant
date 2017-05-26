@@ -91,7 +91,33 @@ var update_list = function() {
                         dropdown.style.left = mousePosX + "px";
                         dropdown.style.top = mousePosY + "px";
                         
+                        document.getElementById("storytabopen").addEventListener("click", function() {
+                            browser.tabs.create({
+                                url: "https://www.fanfiction.net/s/" + s,
+                                active: false
+                            });
+                            
+                            dropdown.setAttribute("hidden", "hidden");
+                        });
                         
+                        document.getElementById("editstorypane").addEventListener("click", function() {
+                            browser.storage.sync.get([s]).then(function(items) {
+                                document.getElementById("sid").innerHTML = s;
+                                document.getElementById("title").innerHTML = items[s]["title"];
+                                document.getElementById("author").innerHTML = items[s]["author"];
+                                document.getElementById("summary").innerHTML = items[s]["summary"];
+                                document.getElementById("favtick").checked = items[s]["favoured"];
+                                document.getElementById("readtick").checked = items[s]["read"];
+                                document.getElementById("pendingtick").checked = items[s]["pending"];
+                                document.getElementById("userrating").value = items[s]["rating"];
+                                document.getElementById("comments").value = items[s]["comments"];
+                                document.getElementById("status").selectedIndex = items[s]["status"];
+                                document.getElementById("delete").disabled = false;
+                                
+                                dropdown.setAttribute("hidden", "hidden");
+                                document.getElementsByClassName("button")[0].click();
+                            });
+                        });
                         
                         dropdown.removeAttribute("hidden");
                     };
