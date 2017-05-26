@@ -345,4 +345,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+    
+    document.getElementById("nukedata").addEventListener("click", function() {
+        browser.storage.sync.clear().then(function() {
+            update_list();
+            databox.value = "";
+            inbutton.disabled = true;
+        });
+    });
 });
