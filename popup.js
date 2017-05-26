@@ -109,6 +109,7 @@ var update_list = function() {
                         document.getElementById("editstorypane").addEventListener("click", function() {
                             browser.storage.sync.get([s]).then(function(items) {
                                 document.getElementById("sid").innerHTML = s;
+                                document.getElementById("aid").innerHTML = items[s]["aid"];
                                 document.getElementById("title").innerHTML = items[s]["title"];
                                 document.getElementById("author").innerHTML = items[s]["author"];
                                 document.getElementById("summary").innerHTML = items[s]["summary"];
@@ -146,6 +147,7 @@ var fetch_tab_story = function() {
             document.getElementById("author").innerHTML = response["author"];
             document.getElementById("summary").innerHTML = response["summary"];
             document.getElementById("sid").innerHTML = response["id"];
+            document.getElementById("aid").innerHTML = response["aid"];
             
             var sid = document.getElementById("sid").innerHTML;
             browser.storage.sync.get([sid]).then(function(items) {
@@ -245,6 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         store[sid]["title"] = document.getElementById("title").innerHTML;
         store[sid]["author"] = document.getElementById("author").innerHTML;
+        store[sid]["aid"] = document.getElementById("aid").innerHTML;
         store[sid]["summary"] = document.getElementById("summary").innerHTML;
         store[sid]["favoured"] = document.getElementById("favtick").checked;
         store[sid]["read"] = document.getElementById("readtick").checked;
