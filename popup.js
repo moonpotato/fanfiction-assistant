@@ -115,7 +115,7 @@ var update_list = function() {
                                 document.getElementById("delete").disabled = false;
                                 
                                 dropdown.setAttribute("hidden", "hidden");
-                                document.getElementsByClassName("button")[0].click();
+                                document.getElementById("currtab").click();
                             });
                         });
                         
@@ -209,6 +209,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("status").selectedIndex = response["status"];
                 }
             });
+        }).catch(function() {
+            document.getElementById("savedtab").click();
         });
         
         browser.tabs.sendMessage(tabs[0].id, {"type": "get-user"}).then(function(response) {
